@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid</title>
+    <style>
+        .wrapper {
+            display: grid;
+            grid-template-areas:
+                'header header header'
+                'content content sidebar'
+                'box-1 box-2 box-2'
+                'box-3 box-3 box-3'
+                'footer footer footer';
+            grid-gap: 1rem;
+        }
+
+        .header {
+            grid-area: header;
+        }
+
+        .content {
+            grid-area: content;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+        }
+
+        .box-1 {
+            grid-area: box-1;
+        }
+
+        .box-2 {
+            grid-area: box-2;
+        }
+
+        .box-3 {
+            grid-area: box-3;
+        }
+
+        .footer {
+            grid-area: footer;
+            text-align: center;
+        }
+
+        .header,
+        .content,
+        .sidebar,
+        .box-1,
+        .box-2,
+        .box-3,
+        footer {
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+        }
+
+        @media(max-width: 500px) {
+            .wrapper {
+                grid-template-areas:
+                    'header'
+                    'content'
+                    'sidebar'
+                    'box-1'
+                    'box-2'
+                    'box-3'
+                    'footer';
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1>ISKY</h1>
+        </header>
+        <section class="content">
+            <h3>HAHAHA</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, accusamus odit error quidem quia maxime
+                libero aspernatur ab quibusdam similique necessitatibus ad ea perspiciatis, maiores, rerum quam magnam
+                illo voluptates modi? Quae fugiat, tenetur ut ad saepe facilis illum nobis beatae necessitatibus, magni,
+                excepturi in adipisci cumque obcaecati molestias praesentium.</p>
+        </section>
+        <aside class="sidebar">
+            <h3>联系我们</h3>
+            <ul>
+                <li>LALALALA</li>
+                <li>XIXI</li>
+                <li>haskdaskdh@163.com</li>
+                <li>134546582</li>
+            </ul>
+        </aside>
+        <div class="box-1">
+            <h3>标题一</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident quod commodi cumque, reprehenderit ea
+                inventore id dolorum dolorem impedit nostrum similique iste culpa dolores corrupti doloribus blanditiis
+                porro, nam obcaecati ipsum illum. Recusandae excepturi, magnam ea veritatis dolores hic optio.</p>
+        </div>
+        <div class="box-2">
+            <h3>标题二</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident quod commodi cumque, reprehenderit ea
+                inventore id dolorum dolorem impedit nostrum similique iste culpa dolores corrupti doloribus blanditiis
+                porro, nam obcaecati ipsum illum. Recusandae excepturi, magnam ea veritatis dolores hic optio.</p>
+        </div>
+        <div class="box-3">
+            <h3>标题三</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident quod commodi cumque, reprehenderit ea
+                inventore id dolorum dolorem impedit nostrum similique iste culpa dolores corrupti doloribus blanditiis
+                porro, nam obcaecati ipsum illum. Recusandae excepturi, magnam ea veritatis dolores hic optio.</p>
+        </div>
+        <footer class="footer">
+            <p>Copyright &copy; 2021</p>
+        </footer>
+    </div>
+</body>
+
+</html>

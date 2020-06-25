@@ -7,11 +7,24 @@
     <link rel="shortcut icon" type="image/x-icon" href="./img/tag_logo.png" />
     <style>
         body {
-            background-color: #e7eaed;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background-color: #e7eaed;
+        }
+
+        .title {
+            width: 350px;
+            height: 60px;
+            font-size: 26px;
+            margin-top: 50px;
+            background-color: #ffffff;
+            text-align: center;
+            line-height: 60px;
+            letter-spacing: 5px;
+            border-radius: 5px;
+            box-shadow: 3px 3px 5px rgb(190, 190, 190);
         }
 
         #container {
@@ -26,14 +39,14 @@
         .name {
             width: 120px;
             height: 40px;
-            margin: 10px 10px;
+            margin: 10px 15px;
             color: #fff;
             line-height: 40px;
             border-radius: 20px;
             letter-spacing: 2px;
             text-align: center;
             font-size: 18px;
-            box-shadow: 3px 5px 5px rgb(124, 124, 124);
+            box-shadow: 3px 3px 10px rgb(122, 122, 122);
             background-color: #1488f5;
         }
 
@@ -45,7 +58,7 @@
             letter-spacing: 14px;
             font-size: 24px;
             background-color: rgba(255, 0, 21, 0.7);
-            box-shadow: 3px 5px 5px rgb(122, 122, 122);
+            box-shadow: 4px 4px 1px #c71a28;
             outline: none;
             border: none;
             padding-left: 22px;
@@ -59,14 +72,15 @@
             box-shadow: none;
         }
 
-        h1 {
-            font-size: 26px;
+        .namestyle {
+            transition: 0.01s;
+            transform: scale(1.5)
         }
     </style>
 </head>
 
 <body>
-    <h1>📢 康康谁是幸运鹅~</h1>
+    <div class="title">📢 康康谁是幸运鹅~</div>
     <div id="container">
     </div>
     <input type="button" class="btn" value="点名" />
@@ -92,13 +106,16 @@
             if (this.value === "点名") {
                 //定时循环
                 timeId = setInterval(function () {
-                    //重置所有颜色
                     for (var j = 0; j < arrs.length; j++) {
+                        //重置所有颜色
                         boxNode.children[j].style.background = "#1488f5";
+                        //重置添加的class
+                        boxNode.children[j].classList.remove("namestyle")
                     }
                     //生成随机数，找到对应姓名，添加颜色
                     var random = parseInt(Math.random() * arrs.length);
-                    boxNode.children[random].style.background = "rgba(255, 0, 21, 0.75)";
+                    boxNode.children[random].style.cssText = "background: rgba(255, 0, 21, 0.75)";
+                    boxNode.children[random].classList.add("namestyle")
                 }, 50);
                 this.value = "停止";
             } else {

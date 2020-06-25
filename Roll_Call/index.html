@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>点名啦！</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./img/tag_logo.png" />
+    <style>
+        body {
+            background-color: #e7eaed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            max-width: 1000px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 50px;
+        }
+
+        .name {
+            width: 120px;
+            height: 40px;
+            margin: 10px 10px;
+            color: #fff;
+            line-height: 40px;
+            border-radius: 20px;
+            letter-spacing: 2px;
+            text-align: center;
+            font-size: 18px;
+            box-shadow: 3px 5px 5px rgb(124, 124, 124);
+            background-color: #1488f5;
+        }
+
+        .btn {
+            width: 125px;
+            height: 50px;
+            color: #fff;
+            border-radius: 8px;
+            letter-spacing: 14px;
+            font-size: 24px;
+            background-color: rgba(255, 0, 21, 0.7);
+            box-shadow: 3px 5px 5px rgb(122, 122, 122);
+            outline: none;
+            border: none;
+            padding-left: 22px;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .btn:active {
+            transform: scale(0.9);
+            background-color: rgba(255, 0, 21, 0.8);
+            box-shadow: none;
+        }
+
+        h1 {
+            font-size: 26px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>📢 康康谁是幸运鹅~</h1>
+    <div id="container">
+    </div>
+    <input type="button" class="btn" value="点名" />
+    <script type="text/javascript">
+        //学生数据
+        var arrs = ['迪丽热巴', '张艺兴', '杨 紫', '邓紫棋', '鹿 晗', '关晓彤', '邓 伦',
+            '刘诗诗', '陈伟霆', '黄子韬', '彭于晏', '赵丽颖', '李 现', '王 源', '王俊凯',
+            '易烊千玺', '杨 幂', '刘德华', '杨颖', '范冰冰', '王祖蓝', '李小璐', '陈 赫',
+            '李 晨', '邓 超', '郑 凯', '刘 涛', '王力宏', '张 杰', '唐 嫣', '郑 爽', '谢 娜',
+            '杨 洋', '黄 磊', '蔡徐坤', '宋 茜', '李 沁', '李易峰', '张 宇', '韩 雪', '张 敏'];
+        //获取父元素
+        var boxNode = document.getElementById("container");
+        //创建姓名div元素
+        for (var i = 0; i < arrs.length; i++) {
+            var divNode = document.createElement("div");
+            divNode.innerHTML = arrs[i];
+            divNode.className = "name";
+            boxNode.appendChild(divNode);
+        }
+        //点名
+        var btn = document.getElementsByClassName("btn")[0];
+        btn.onclick = function () {
+            if (this.value === "点名") {
+                //定时循环
+                timeId = setInterval(function () {
+                    //重置所有颜色
+                    for (var j = 0; j < arrs.length; j++) {
+                        boxNode.children[j].style.background = "#1488f5";
+                    }
+                    //生成随机数，找到对应姓名，添加颜色
+                    var random = parseInt(Math.random() * arrs.length);
+                    boxNode.children[random].style.background = "rgba(255, 0, 21, 0.75)";
+                }, 50);
+                this.value = "停止";
+            } else {
+                //清除计时器
+                clearInterval(timeId);
+                this.value = "点名";
+            }
+        }
+    </script>
+</body>
+
+</html>

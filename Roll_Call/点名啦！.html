@@ -86,6 +86,8 @@
     <div id="container">
     </div>
     <input type="button" class="btn" value="点名" />
+    <!-- 音效 -->
+    <audio id="media" src="./res/switch.mp3"></audio>
     <script type="text/javascript">
         //学生数据
         var arrs = ['迪丽热巴', '张艺兴', '杨 紫', '邓紫棋', '鹿 晗', '关晓彤', '邓 伦',
@@ -104,7 +106,9 @@
         }
         //点名
         var btn = document.getElementsByClassName("btn")[0];
+        var audio = document.getElementById("media")
         btn.onclick = function () {
+            audio.play()
             if (this.value === "点名") {
                 //定时循环
                 timeId = setInterval(function () {

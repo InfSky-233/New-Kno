@@ -1,144 +1,204 @@
 <!DOCTYPE html>
 <html lang="zh">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>天选系统</title>
     <link rel="shortcut icon" href="https://www.cdu.edu.cn/favicon.ico" />
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #e7eaed;
-        }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #e7eaed;
+      }
 
-        .title {
-            width: 350px;
-            height: 60px;
-            font-size: 26px;
-            margin-top: 50px;
-            line-height: 60px;
-            border-radius: 5px;
-            letter-spacing: 5px;
-            user-select: none;
-            text-align: center;
-            background-color: #ffffff;
-            box-shadow: 3px 3px 10px rgba(190, 190, 190, 0.5);
-        }
+      .tips {
+        width: 1100px;
+        height: 100px;
+        color: #f84656;
+        font-size: 52px;
+        font-weight: bold;
+        margin-top: 10px;
+        padding-left: 50px;
+        line-height: 100px;
+        text-align: center;
+        border-radius: 5px;
+        letter-spacing: 64px;
+        background-color: #ffffff;
+        box-shadow: 3px 3px 10px rgba(190, 190, 190, 0.5);
+      }
 
-        #container {
-            max-width: 1000px;
-            margin: 50px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
+      @media screen and (max-width: 1100px) {
+        .tips {
+          display: none;
         }
+      }
 
-        .name {
-            width: 120px;
-            height: 40px;
-            color: #fff;
-            font-size: 18px;
-            margin: 15px 20px;
-            line-height: 40px;
-            border-radius: 20px;
-            letter-spacing: 2px;
-            user-select: none;
-            text-align: center;
-            background-color: #1488f5;
-            box-shadow: 3px 3px 10px #5c87af;
-        }
+      .title {
+        width: 350px;
+        height: 60px;
+        font-size: 26px;
+        margin-top: 40px;
+        line-height: 60px;
+        border-radius: 5px;
+        letter-spacing: 5px;
+        user-select: none;
+        text-align: center;
+        background-color: #ffffff;
+        box-shadow: 3px 3px 10px rgba(190, 190, 190, 0.5);
+      }
 
-        .btn {
-            width: 125px;
-            height: 50px;
-            color: #fff;
-            font-size: 24px;
-            border-radius: 8px;
-            letter-spacing: 14px;
-            background-color: rgba(255, 0, 21, 0.7);
-            box-shadow: 4px 4px 1px #c71a28;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding-left: 22px;
-            transition: 0.1s;
-        }
+      #container {
+        max-width: 1000px;
+        margin: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
 
-        .btn:active {
-            box-shadow: none;
-            transform: scale(0.9);
-            background-color: rgba(255, 0, 21, 0.8);
-        }
+      .name {
+        width: 120px;
+        height: 40px;
+        color: #fff;
+        font-size: 18px;
+        margin: 15px 20px;
+        line-height: 40px;
+        border-radius: 20px;
+        letter-spacing: 2px;
+        user-select: none;
+        text-align: center;
+        background-color: #1488f5;
+        box-shadow: 3px 3px 10px #5c87af;
+      }
 
-        .namestyle {
-            transition: 0.01s;
-            transform: scale(1.5)
-        }
+      .btn {
+        width: 125px;
+        height: 50px;
+        color: #fff;
+        font-size: 24px;
+        border-radius: 8px;
+        letter-spacing: 14px;
+        background-color: rgba(255, 0, 21, 0.7);
+        box-shadow: 4px 4px 1px #c71a28;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding-left: 22px;
+        transition: 0.1s;
+      }
+
+      .btn:active {
+        box-shadow: none;
+        transform: scale(0.9);
+        background-color: rgba(255, 0, 21, 0.8);
+      }
+
+      .namestyle {
+        transition: 0.01s;
+        transform: scale(1.5);
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <div class="tips">好好学习🕒天天向上</div>
     <div class="title">📢 康康谁是幸运鹅~</div>
-    <div id="container">
-    </div>
+    <div id="container"></div>
     <input type="button" class="btn" value="点名" />
     <!-- 音效 -->
     <audio id="media" src="./res/switch.mp3"></audio>
     <script type="text/javascript">
-        // 学生数据
-        var arrs = ['迪丽热巴', '张艺兴', '杨 紫', '邓紫棋', '鹿 晗', '关晓彤', '邓 伦',
-            '刘诗诗', '陈伟霆', '黄子韬', '彭于晏', '赵丽颖', '李 现', '王 源', '王俊凯',
-            '易烊千玺', '杨 幂', '刘德华', '杨 颖', '范冰冰', '王祖蓝', '李小璐', '陈 赫',
-            '李 晨', '邓 超', '郑 凯', '刘 涛', '王力宏', '张 杰', '唐 嫣', '郑 爽', '谢 娜',
-            '杨 洋', '黄 磊', '蔡徐坤', '宋 茜', '李 沁', '李易峰', '张 宇', '韩 雪', '张 敏'];
-        // 获取父元素
-        var boxNode = document.getElementById("container");
-        // 创建姓名div元素
-        for (var i = 0; i < arrs.length; i++) {
-            var divNode = document.createElement("div");
-            divNode.innerHTML = arrs[i];
-            divNode.className = "name";
-            boxNode.appendChild(divNode);
-        }
-        // 点名
-        var btn = document.getElementsByClassName("btn")[0];
-        var audio = document.getElementById("media")
-        btn.onclick = function () {
-            audio.play()
-            if (this.value === "点名") {
-                // 定时循环
-                timeId = setInterval(function () {
-                    for (var j = 0; j < arrs.length; j++) {
-                        // 重置所有颜色
-                        boxNode.children[j].style.background = "#1488f5";
-                        // 重置添加的class
-                        boxNode.children[j].classList.remove("namestyle")
-                    }
-                    // 生成随机数，找到对应姓名，添加颜色
-                    var random = parseInt(Math.random() * arrs.length);
-                    boxNode.children[random].style.cssText = "background: rgba(255, 0, 21, 0.75)";
-                    boxNode.children[random].classList.add("namestyle")
-                }, 70);
-                this.value = "停止";
-            } else {
-                // 清除计时器
-                clearInterval(timeId);
-                this.value = "点名";
-                // 语音播报
-                var nameArr = document.getElementsByClassName("namestyle")[0];
-                var voicePlay = new SpeechSynthesisUtterance();
-                voicePlay.text = nameArr.innerHTML;                // 播放文本
-                voicePlay.rate = 1;                                // 播放语速
-                voicePlay.pitch = 1;                              // 音调高低
-                voicePlay.volume = 1;                             // 播放音量
-                speechSynthesis.speak(voicePlay);
+      // 学生数据
+      var names = [
+        "迪丽热巴",
+        "张艺兴",
+        "杨 紫",
+        "邓紫棋",
+        "鹿 晗",
+        "关晓彤",
+        "邓 伦",
+        "刘诗诗",
+        "陈伟霆",
+        "黄子韬",
+        "彭于晏",
+        "赵丽颖",
+        "李 现",
+        "王 源",
+        "王俊凯",
+        "易烊千玺",
+        "杨 幂",
+        "刘德华",
+        "杨 颖",
+        "范冰冰",
+        "王祖蓝",
+        "李小璐",
+        "陈 赫",
+        "李 晨",
+        "邓 超",
+        "郑 凯",
+        "刘 涛",
+        "王力宏",
+        "张 杰",
+        "唐 嫣",
+        "郑 爽",
+        "谢 娜",
+        "杨 洋",
+        "黄 磊",
+        "蔡徐坤",
+        "宋 茜",
+        "李 沁",
+        "李易峰",
+        "张 宇",
+        "韩 雪",
+        "张 敏",
+      ];
+      // 获取父元素
+      var boxNode = document.getElementById("container");
+      // 创建姓名div元素
+      for (var i = 0; i < names.length; i++) {
+        var divNode = document.createElement("div");
+        divNode.innerHTML = names[i];
+        divNode.className = "name";
+        boxNode.appendChild(divNode);
+      }
+      // 点名
+      var btn = document.getElementsByClassName("btn")[0];
+      var audio = document.getElementById("media");
+      btn.onclick = function () {
+        audio.play();
+        if (this.value === "点名") {
+          window.speechSynthesis.cancel();
+          // 定时循环
+          timeId = setInterval(function () {
+            for (var j = 0; j < names.length; j++) {
+              // 重置所有颜色
+              boxNode.children[j].style.background = "#1488f5";
+              // 重置添加的class
+              boxNode.children[j].classList.remove("namestyle");
             }
+            // 生成随机数，找到对应姓名，添加颜色
+            var random = parseInt(Math.random() * names.length);
+            boxNode.children[random].style.cssText =
+              "background: rgba(255, 0, 21, 0.75)";
+            boxNode.children[random].classList.add("namestyle");
+          }, 70);
+          this.value = "停止";
+        } else {
+          // 清除计时器
+          clearInterval(timeId);
+          this.value = "点名";
+          // 语音播报
+          var nameArr = document.getElementsByClassName("namestyle")[0];
+          var voicePlay = new SpeechSynthesisUtterance();
+          voicePlay.text = nameArr.innerHTML + "请开始你的表演"; // 播放文本
+          voicePlay.rate = 0.7; // 播放语速
+          voicePlay.pitch = 1.7; // 音调高低 基线音高(0.5 - 2. default 1.0)
+          voicePlay.volume = 1; // 播放音量 音量(0 - 1. default 1.0)
+          speechSynthesis.speak(voicePlay);
         }
+      };
     </script>
-</body>
-
+  </body>
 </html>
